@@ -20,5 +20,6 @@
 
 void init_gpio_pins(void);
 void make_a_buzzer(void);
+void led_trigger(void);
 
 #endif

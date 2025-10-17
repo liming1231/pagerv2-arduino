@@ -1,0 +1,32 @@
+#ifndef __cbase64_h__
+#define __cbase64_h__
+
+#include <stdio.h>
+
+#if __cplusplus
+extern "C"
+{
+#endif
+
+    char *cbase64_encode(const char *buf, const long size, char *base64Char);
+    char *cbase64_decode(const char *base64Char, const long base64CharSize, char *originChar, long originCharSize);
+    
+    #define BASE64_ENCODE_OUT_SIZE(s) ((unsigned int)((((s) + 2) / 3) * 4 + 1))
+    #define BASE64_DECODE_OUT_SIZE(s) ((unsigned int)(((s) / 4) * 3))
+
+    /*
+    * out is null-terminated encode string.
+    * return values is out length, exclusive terminating `\0'
+    */
+    unsigned int base64_encode(const unsigned char *in, unsigned int inlen, char *out);
+
+    /*
+    * return values is out length
+    */
+    unsigned int base64_decode(const char *in, unsigned int inlen, unsigned char *out);
+
+#if __cplusplus
+}
+#endif
+
+#endif /* __cbase64_h__ */

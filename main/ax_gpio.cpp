@@ -20,3 +20,14 @@ void make_a_buzzer(void) {
   delay(500);
   digitalWrite(BUZZER_SIG, LOW);
 }
+
+void led_trigger(void) {
+  static uint8_t switchLedFlag = 0;
+  if (switchLedFlag == 0) {
+    digitalWrite(BROADLED, HIGH);
+    switchLedFlag = 1;
+  } else {
+    digitalWrite(BROADLED, LOW);
+    switchLedFlag = 0;
+  }
+}

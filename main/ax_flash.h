@@ -3,8 +3,7 @@
 
 #include <Arduino.h>
 #include <nvs.h>
-
-
+#include <nvs_flash.h>
 
 // nvs storage key
 #define WIFI_NAME "WIFI_NAME"
@@ -33,7 +32,8 @@
 #define STTC_GW "STTC_GW"
 #define STTC_SNT "STTC_SNT"
 
-typedef enum {
+typedef enum
+{
   UNCFG = 0,
   PRIVAT = 1,
   DEVELOPMENT = 2,
@@ -42,7 +42,8 @@ typedef enum {
   JAPANESE = 5,
 } ENV_TYPE;
 
-typedef enum {
+typedef enum
+{
   ALI_ENV = 0,
   AX_BUILD_ENV = 1,
   AX_BUILD_ENV_GLBL = 2,
@@ -51,24 +52,24 @@ typedef enum {
 
 typedef enum
 {
-    RUN_PRIVAT = 0,
-    RUN_DEV_ALI = 1,
-    RUN_DEV_AX_BUILD = 2,
-    RUN_PROD_ALI = 3,
-    RUN_PROD_AX_BUILD = 4,
-    RUN_FOREIGN_ALI = 5,
-    RUN_FOREIGN_AX_BUILD_GLBL = 6,
-    RUN_FOREIGN_AX_BUILD_EU = 7,
-    RUN_JAPANESE_ALI = 8,
-    RUN_JAPANESE_AX_BUILD_GLBL = 9
+  RUN_PRIVAT = 0,
+  RUN_DEV_ALI = 1,
+  RUN_DEV_AX_BUILD = 2,
+  RUN_PROD_ALI = 3,
+  RUN_PROD_AX_BUILD = 4,
+  RUN_FOREIGN_ALI = 5,
+  RUN_FOREIGN_AX_BUILD_GLBL = 6,
+  RUN_FOREIGN_AX_BUILD_EU = 7,
+  RUN_JAPANESE_ALI = 8,
+  RUN_JAPANESE_AX_BUILD_GLBL = 9
 } RUN_ENV;
 
-typedef enum {
+typedef enum
+{
   USE_CHINESE_LANG = 0,
   USE_ENGLISH_LANG = 1,
   USE_JAPANESE_LANG = 2,
 } LANG_TYPE;
-
 
 #pragma pack(1)
 typedef struct
@@ -127,7 +128,8 @@ typedef struct
   String currAction;
 } ACTION_FLAG;
 
-typedef struct _display_vars {
+typedef struct _display_vars
+{
   uint8_t user_lang;
   uint8_t line_len;
   uint8_t web_display_lang;
@@ -137,7 +139,8 @@ typedef struct
 {
   uint8_t ipUpdate;
   uint8_t ipCfgFlag;
-  union {
+  union
+  {
     uint8_t ipArr[4];
     uint32_t ip_u32;
   };
@@ -162,5 +165,13 @@ void cfg_wifi_dns(void);
 void init_env(void);
 bool factory_settings(void);
 void check_if_need_factory(void);
+bool update_ap_gw(void);
+bool update_dns(void);
+bool update_wifi_staticip(void);
+bool update_wifi(void);
+bool update_wpa2_enterprise_wifi(void);
+bool update_privet_deploy_vars(void);
+bool update_env_type(void);
+bool update_web_display_lang(void);
 
 #endif
